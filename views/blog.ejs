@@ -1,0 +1,60 @@
+<%- include("partials/header.ejs") %>
+
+<section class="write-blog-container">
+
+  <form action="/create" method="POST" enctype="multipart/form-data">
+    <h1>Create Your New Post</h1>
+    
+    <div>
+      <label for="title">Title</label>
+      <input id="title" name="title" type="text" max="50" required>
+    </div>
+
+    <div>
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        <option value="" disabled selected>Select a category</option>
+        <option value="technology">Technology</option>
+        <option value="health">Health</option>
+        <option value="lifestyle">Lifestyle</option>
+        <option value="education">Education</option>
+        <option value="entertainment">Entertainment</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="image">Image</label>
+
+      <div class="image-container">
+        <div class="image-import-label">
+          <img src="https://t3.ftcdn.net/jpg/05/25/37/96/360_F_525379615_AQlcYaHQqJJAYRoBkjDKGO31G1bp9CYw.jpg" alt="import image" class="import">
+          <h5><strong>Upload an Image</strong></h5>
+          <p class="file-name">No File Chosen</p>
+        </div>
+        <input id="image" type="file" accept="image/png, image/jpeg, image/jpg" name="image" required style="display: none;">
+      </div>
+
+    </div>
+
+    <div>
+      <label for="description">Description</label>
+      <textarea id="description" name="description"></textarea>
+    </div>
+    
+    <input type="submit" value="Submit">
+  </form>
+
+</section>
+
+<script>
+  document.querySelector('.image-container').addEventListener('click', function() {
+    document.getElementById('image').click();
+  });
+
+  document.getElementById('image').addEventListener('change', function() {
+    const fileName = this.files[0] ? this.files[0].name : 'No File Chosen';
+    document.querySelector('.file-name').textContent = fileName;
+  });
+</script>
+
+<%- include("partials/footer.ejs") %>

@@ -1,0 +1,55 @@
+<%- include("partials/header.ejs") %>
+
+<section class="write-blog-container">
+  <form action="/post/<%= post.id %>/edit" method="POST" enctype="multipart/form-data">
+    <h1>Edit Post</h1>
+    
+    <div>
+      <label for="title">Title</label>
+      <input id="title" name="title" type="text" value="<%= post.title %>" max="50" required>
+    </div>
+
+    <div>
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        <option value="technology" <%= post.category === 'technology' ? 'selected' : '' %>>Technology</option>
+        <option value="health" <%= post.category === 'health' ? 'selected' : '' %>>Health</option>
+        <option value="lifestyle" <%= post.category === 'lifestyle' ? 'selected' : '' %>>Lifestyle</option>
+        <option value="education" <%= post.category === 'education' ? 'selected' : '' %>>Education</option>
+        <option value="entertainment" <%= post.category === 'entertainment' ? 'selected' : '' %>>Entertainment</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="image">Change Image (Optional)</label>
+      <div class="image-container">
+        <div class="image-import-label">
+          <img src="https://t3.ftcdn.net/jpg/05/25/37/96/360_F_525379615_AQlcYaHQqJJAYRoBkjDKGO31G1bp9CYw.jpg" alt="import image" class="import">
+          <h5><strong>Upload an Image</strong></h5>
+          <p class="file-name">No File Chosen</p>
+        </div>
+        <input id="image" type="file" accept="image/png, image/jpeg, image/jpg" name="image" style="display: none;">
+      </div>
+    </div>
+
+    <div>
+      <label for="description">Description</label>
+      <textarea id="description" name="description"><%= post.description %></textarea>
+    </div>
+    
+    <input type="submit" value="Update">
+  </form>
+</section>
+
+<script>
+  document.querySelector('.image-container').addEventListener('click', function() {
+    document.getElementById('image').click();
+  });
+
+  document.getElementById('image').addEventListener('change', function() {
+    const fileName = this.files[0] ? this.files[0].name : 'No File Chosen';
+    document.querySelector('.file-name').textContent = fileName;
+  });
+</script>
+
+<%- include("partials/footer.ejs") %>

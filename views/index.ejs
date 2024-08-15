@@ -1,0 +1,28 @@
+<%- include("partials/header.ejs") %>
+
+<h1>Publish Your Memory</h1>
+<p>Make your story album in beautiful way</p>
+
+<div class="blog-home">
+    <img src="/images/photo.png" alt="blog example photo">
+    <hr>
+
+    <section id="view">
+        <div class="blogpost-container">
+            <% posts.forEach(post => { %>
+                <a href="/post/<%= post.id %>" class="post-link">
+                    <div class="post">
+                        <h2><%= post.title %></h2>
+                        <hr>
+                        <p><strong>Category:</strong> <%= post.category %></p>
+                        <p><%= post.description %></p>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
+    </section>
+
+</div>
+
+
+<%- include("partials/footer.ejs") %>

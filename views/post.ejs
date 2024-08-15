@@ -1,0 +1,22 @@
+<%- include("partials/header.ejs") %>
+
+<div class="post-detail">
+    <h1><%= post.title %></h1>
+    <hr>
+    <p><strong>Category:</strong> <%= post.category %></p>
+    <% if (post.image) { %>
+        <img src="/uploads/<%= post.image %>" alt="<%= post.title %>" class="post-image">
+    <% } %>
+    <p><%= post.description %></p>
+
+    <form action="/post/<%= post.id %>/edit" method="GET" class="button">
+        <button class="button">Edit</button>
+    </form>
+    
+    <form action="/post/<%= post.id %>/delete" method="POST" class="button" onsubmit="return confirm('Are you sure you want to delete this post?');">
+        <button class="button">Delete</button>
+    </form>
+
+</div>
+
+<%- include("partials/footer.ejs") %>
